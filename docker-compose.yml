@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mysql_db:
+    image: mysql:latest
+    env_file:
+      - ./configuration/mysql.env
+    container_name: "mysql_db"
+    restart: "no"
+    ports:
+      - 5525:3306
+    volumes:
+      - ./configuration/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./configuration/init.sql:/docker-entrypoint-initdb.d/init.sql
